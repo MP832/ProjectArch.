@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+{% load qr_code %}
+<head>
+    <style>
+        #body {
+            background-color: #0F1014;
+        }
+        .main  h6 {
+            text-align: center;
+        }
+
+        .main input {
+            margin-top: 2em;
+            background-color: #8B9C57;
+            border: none;
+            padding: 1em 2em;
+            font-size: 6vw;
+            color: white;
+            max-width: 80%;
+            cursor: pointer;
+        }
+
+    </style>
+</head>
+
+<body id="body">
+    <div class="main">
+        <form method="POST">
+            {% csrf_token %}
+            <h3 style="visibility: hidden;" value="1">{{check.aanwezigheid}}</h3>
+
+
+            <h6><input type="submit" value="Aanwezig"/></h6>
+
+
+        </form>
+    </div>
+
+</body>

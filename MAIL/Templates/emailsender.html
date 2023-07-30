@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<head>
+    <style>
+        .div {
+            text-align: center;
+            margin-top: 20%;
+        }
+
+        .div a {
+            margin-top: 2em;
+            background-color: #007bff;
+            border: none;
+            padding: 1em 2em;
+            font-size: 6vw;
+            color: white;
+            max-width: 80%;
+            cursor: pointer;
+            text-decoration: none;
+            font-family: sans-serif;
+            border-radius: 0.4em;
+        }
+
+    </style>
+</head>
+
+<body>
+    {{lines}}
+    <div class="div">
+        <a onclick="return confirm('Je staat op het punt mails te verzenden!')"  href="{% url 'send1' eve.id %}">stuur</a>
+
+    </div>
+
+
+</body>

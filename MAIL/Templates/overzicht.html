@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <style>
+        body {
+            margin: 0em;
+            
+        }
+
+        body h1 {
+            font-weight: 400;
+            font-size: 2.5vmax;
+            margin-top: 1em;
+            color:  #212529;
+            font-family: sans-serif;
+            margin-left: 1em;
+        }
+
+        .rest {
+            display: flex;
+            margin-left: 2em;
+            font-family: sans-serif;
+            gap: 2em;
+            align-items: center;
+
+        }
+
+        .rest h2 {
+            font-weight: 300;
+            cursor: pointer;
+
+
+        }
+
+        @media screen and (max-width:700px){
+            header {
+            display: grid;
+            grid-template-columns: 1em 1fr;
+            height: 4em;
+            box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+        }
+            header img {
+            width: 0em;
+            margin-left: 1em;
+            margin-top: 0.5em;
+            
+        }
+
+        .rest h2 {
+            font-weight: 300;
+            cursor: pointer;
+            font-size: 1.5vmax;
+        }
+        }
+
+        @media screen and (min-width:700px){
+        header {
+            display: grid;
+            grid-template-columns: 18em 3fr;
+            height: 4em;
+            box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+        }
+        header img {
+            width: 16em;
+            margin-left: 1em;
+            margin-top: 0.5em;
+            
+        }
+    }
+
+        .rest a {
+            text-decoration: none;
+            color: black;
+        }
+
+        .groepen {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(10vmin, 25vmin));
+            row-gap: 3em;
+            margin-bottom: 6em;
+            column-gap: 2em;
+            width: 90%;
+            margin-left: auto;
+            margin-right: auto;
+            font-family: sans-serif;
+            color: #212529;
+            box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+            border-radius: 0.3em;
+            border-top: 8px solid #007bff;
+            padding-bottom: 2em;
+            
+            
+        }
+        .groepen a {
+            color: #212529;
+        }
+
+        .groep {
+            text-align: center;
+            position: relative;
+            margin-top: 2em;
+            margin-left: auto;
+            margin-right: auto;
+            width: 90%;
+            max-width: 70vmin;
+            padding: 0.25em 0.5em;
+            box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+            transition: top  0.5s ease-in-out;
+            transition: box-shadow 0.1s ease-in-out ;
+            font-size: 1.50vmax;
+            box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+            border-top: 4px solid #007bff;
+            border-radius: 0.4em;
+            transition: background-color 0.15s linear;
+            margin-left: 15%;
+        }
+
+        .groep h2 {
+            font-weight: 400;
+        }
+
+
+        .groep:hover {
+            cursor: pointer;
+            background-color: #007bff;
+        }
+
+        .groep:hover h2 {
+            color: #FFFFFF;
+        }
+
+
+
+    </style>
+</head>
+
+<body>
+    <header>
+        <div class="title">
+            <img src="static/NP-logo-horizontaal-zonderbase.jpg" alt="Logo Nenspower">
+        </div>
+
+        <div class="rest">
+            <a href="{% url 'overzicht' %}"><h2 style=" text-decoration: underline;">Overzicht</h2></a>
+            <a href="{% url 'mailcentrum' %}"><h2>MailCentrum</h2></a>
+            <a href="{% url 'admin:index' %}"><h2>Admin</h2></a>
+        </div>
+    </header>
+
+
+
+    <h1>Evenementen</h1>
+    <div class="groepen">
+        {% for i in eve%}
+        <a  style="text-decoration: none;" , href="{% url 'evenement' i.id %}">
+        <div class="groep">
+        
+            <h2>{{i.name}}</h2>
+
+        
+        </div>
+        </a>
+        {% endfor %}
+
+    </div>
+</body>

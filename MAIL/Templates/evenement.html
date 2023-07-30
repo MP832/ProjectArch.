@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+{% load static %}
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <style>
+        body {
+            margin: 0em;
+        }
+
+        #pgh {
+            font-weight: 400;
+            font-size: 2.5vmax;
+            margin-top: 1em;
+            color:  #212529;
+            font-family: sans-serif;
+            margin-left: 1em;
+        }
+
+        .rest {
+            display: flex;
+            margin-left: 2em;
+            font-family: sans-serif;
+            gap: 2em;
+            align-items: center;
+
+        }
+
+        .rest h2 {
+            font-weight: 300;
+            cursor: pointer;
+
+
+        }
+
+        @media screen and (max-width:700px){
+            header {
+            display: grid;
+            grid-template-columns: 1em 1fr;
+            height: 4em;
+            box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+        }
+            header img {
+            width: 0em;
+            margin-left: 1em;
+            margin-top: 0.5em;
+            
+        }
+
+        .rest h2 {
+            font-weight: 300;
+            cursor: pointer;
+            font-size: 1.5vmax;
+        }
+        }
+
+        @media screen and (min-width:700px){
+        header {
+            display: grid;
+            grid-template-columns: 18em 3fr;
+            height: 4em;
+            box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+        }
+        header img {
+            width: 16em;
+            margin-left: 1em;
+            margin-top: 0.5em;
+            
+        }
+    }
+
+        .rest a {
+            text-decoration: none;
+            color: black;
+        }
+
+        .groepen {
+            display: grid;
+            grid-template-columns: 1fr;
+            row-gap: 3em;
+            margin-bottom: 6em;
+            column-gap: 2em;
+            width: 90%;
+            margin-left: auto;
+            margin-right: auto;
+            font-family: sans-serif;
+            color: #212529;
+            
+        }
+        .groepen a {
+            color: #212529;
+        }
+
+        .groep {
+            box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+            border-top: 4px solid #007bff;
+            border-radius: 0.4em;
+            
+
+        }
+
+        .groep h1 {
+            padding-left: 40px;
+            font-size: 1.5vmax;
+            font-weight: 400;
+        }
+
+        .flex {
+            display: flex;
+            border-bottom: 1px solid grey;
+            align-items: center;
+            gap: 3em;
+
+        }
+
+        .users {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(10vmin, 50vmin));
+            margin-left: 10%;
+            margin-right: 10%;
+            gap: 2em;
+            padding-bottom: 2em;
+            margin-top: 1em;
+        }
+
+        .userss {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(10vmin, 60vmin));
+            margin-left: 10%;
+            margin-right: 10%;
+            gap: 2em;
+            padding-bottom: 2em;
+            margin-top: 1em;
+        }
+
+        .usera {
+            text-align: center;
+            background-color: #7BCFA9;
+            border-radius: 0.4em;
+            font-size: 1vmax;        }
+
+        .useraa {
+            text-align: center;
+            background-color: #FFE168;
+            border-radius: 0.4em;
+            font-size: 1vmax;        }
+
+        .useru {
+            text-align: center;
+            background-color: #ED9D97;
+            border-radius: 0.4em;
+            font-size: 1vmax;
+            word-break: break-all;        }
+
+
+
+
+    </style>
+</head>
+
+<body>
+    <header>
+        <div class="title">
+            <img src="/static/NP-logo-horizontaal-zonderbase.jpg" alt="Logo Nenspower">
+        </div>
+
+        <div class="rest">
+            <a href="#aanw"><h2>Aanwezigen</h2></a>
+            <a href="#aang"><h2>Aangemeld</h2></a>
+            <a href="#uitg"><h2>Uitgenodigd</h2></a>
+            <a href="{% url 'overzicht' %}"><h2>Terug</h2></a>
+        </div>
+    </header>
+
+
+
+    <h1 id="pgh">{{eve.name}}</h1>
+    <div class="groepen">
+        
+        <div class="groep" id="aanw">
+            <h1>Aanwezigen</h1>
+            <div class="users">
+                {% for i in bezoeker %}
+                {% if i.evenements == eve.name and i.aanwezigheid == 1%}
+                <div class="usera">
+                    <h2>{{i.fname}} {{i.lname}}</h2>
+                </div>
+                {% endif %}
+                {% endfor %}
+            </div>    
+        </div>
+        </a>
+       
+
+    </div>
+
+    <div class="groepen">
+        
+        <div class="groep" id="aang">
+            <div class="flex">
+                <h1>Aangemeld</h1>    
+                <a href="\media\{{eve.id}}maillijst.xlsx" download>Download Maillijst</a>
+            </div>
+            
+
+            <div class="users">
+                {% for i in bezoeker %}
+                {% if i.evenements == eve.name and i.aanwezigheid == 0%}
+                <div class="useraa">
+                    <h2>{{i.fname}} {{i.lname}}</h2>
+                </div>
+                {% endif %}
+                {% endfor %}
+            </div>    
+        </div>
+        </a>
+       
+
+    </div>
+
+    <div class="groepen">
+        
+        <div class="groep" id="uitg">
+            <h1>Uitgenodigd </h1>
+            <div class="userss">
+                {% for i in lines %}
+                <div class="useru">
+                    <h2>{{i}}</h2>
+                </div>
+                {% endfor %}
+            </div>    
+        </div>
+        </a>
+       
+
+    </div>
+</body>
